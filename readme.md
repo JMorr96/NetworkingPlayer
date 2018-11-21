@@ -1,14 +1,16 @@
-# Project Title
+# TCP Networking Player and Chat Server/Client
+
+**** The below readme is a work in progress! ****
 
 One Paragraph of project description goes here
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To use the networking player simply download the project file. Currently the state of this repository is simply to display the code but stand alone usability of the application will be added shortly.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Currently, visual studios is required and the project must be downloaded to run the application but the libraries will be packaged with the .exe so that it can be run standalone in the future.
 
 ```
 Give examples
@@ -82,6 +84,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
+* Big shoutout to PurpleBooth for the readme template!
 * Inspiration
 * etc
