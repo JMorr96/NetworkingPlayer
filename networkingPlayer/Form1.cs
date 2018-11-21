@@ -12,6 +12,14 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 
+/*
+        * ==========================================
+        *               Notes for me!
+        * ==========================================
+        * 
+        * Currently the client reads the "pause" but it is being read by worker 1.
+        */
+
 namespace networkingPlayer
 {
     public partial class Form1 : Form
@@ -19,8 +27,10 @@ namespace networkingPlayer
         private TcpClient client;
         public StreamReader STR;
         public StreamWriter STW;
-        public string receive;
+        public string receiveText;
         public string TextToSend;
+        public string sendCommand;
+        public string receiveCommand;
 
         public Form1()
         {
@@ -79,12 +89,12 @@ namespace networkingPlayer
             {
                 try
                 {
-                    receive = STR.ReadLine();
+                    receiveText = STR.ReadLine();
                     this.ChatScreentextbox.Invoke(new MethodInvoker(delegate ()
                     {
-                        ChatScreentextbox.AppendText("Partner: " + receive + "\n");
+                        ChatScreentextbox.AppendText("Partner: " + receiveText + "\n");
                     }));
-                    receive = "";
+                    receiveText = "";
                 }
                 catch(Exception ex)
                 {
@@ -112,21 +122,27 @@ namespace networkingPlayer
 
         private void backgroundWorker3_DoWork(object sender, DoWorkEventArgs e)
         {
-            if(client.Connected)
+            while (client.Connected)
             {
-                receive = STR.ReadLine();
-                if(receive == "pause")
-                {
-                    axWindowsMediaPlayer1.Ctlcontrols.play();
-                }
-                this.axWindowsMediaPlayer1.Invoke(new MethodInvoker(delegate ()
-                {
-                    axWindowsMediaPlayer1.Ctlcontrols.pause();
-                }));
                 
+                if (STR.ReadLine() == "pause")
+                {
 
+                    this.axWindowsMediaPlayer1.Invoke(new MethodInvoker(delegate ()
+                    {
+                        axWindowsMediaPlayer1.Ctlcontrols.pause();
+                    }));
+                    receiveCommand = " ";
+                }
+                else
+                {
+                    MessageBox.Show("Sending failed");
+                }
             }
+            
+            backgroundWorker3.CancelAsync();
         }
+
 
         private void SendButton_Click(object sender, EventArgs e)
         {
@@ -164,11 +180,8 @@ namespace networkingPlayer
         private void pauseButton_Click(object sender, EventArgs e)
         {
             axWindowsMediaPlayer1.Ctlcontrols.pause();
-            if (client.Connected)
-            {
-                STW.WriteLine("pause"); //ERROR
-
-            }
+            STW.WriteLine("pause");
+            backgroundWorker3.RunWorkerAsync();
         }
 
         private void playButton_Click(object sender, EventArgs e)
@@ -181,16 +194,10 @@ namespace networkingPlayer
 
         }
 
-        
+       
 
-        /*
-         * ==========================================
-         *               Notes for me!
-         * ==========================================
-         * 
-         * Try adding another worker thread, and on that thread, handle the remote control for the application.
-         * 
-         *Check worker thread 3 tomorrow. Pretty sure you need to write a message to the stream to pause.
-         */
+
+
+       
     }
 }

@@ -31,3 +31,4 @@ C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debu
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\networkingPlayer.csproj.CopyComplete
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\networkingPlayer.exe
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\networkingPlayer.pdb
+C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\networkingPlayer.csprojAssemblyReference.cache
