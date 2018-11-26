@@ -18,6 +18,8 @@ using System.IO;
         * ==========================================
         * 
         * Currently the client reads the "pause" but it is being read by worker 1.
+        * Only need two threads. One for sending and one for receiving. In the receiving, parse the string,
+        * and if it says "Command:command" run function, but if it says "Chat:message" run chat.
         */
 
 namespace networkingPlayer
@@ -56,6 +58,8 @@ namespace networkingPlayer
             STW.AutoFlush = true; //Ask prof about this one.
             backgroundWorker1.RunWorkerAsync();
             backgroundWorker2.WorkerSupportsCancellation = true;
+
+            
         }
 
         //Connect to host code below.
@@ -90,16 +94,43 @@ namespace networkingPlayer
                 try
                 {
                     receiveText = STR.ReadLine();
-                    this.ChatScreentextbox.Invoke(new MethodInvoker(delegate ()
+                    string[] words = receiveText.Split('Û');
+                    string checkString = words[0];
+
+                    if (checkString == "chat")
                     {
-                        ChatScreentextbox.AppendText("Partner: " + receiveText + "\n");
-                    }));
-                    receiveText = "";
-                }
-                catch(Exception ex)
+                        this.ChatScreentextbox.Invoke(new MethodInvoker(delegate ()
+                        {
+                            ChatScreentextbox.AppendText("Partner: " + words[1] + "\n");
+                        }));
+                        receiveText = "";
+                    }
+
+                    else if (checkString == "command")
+                    {
+                        string playerCommand = words[1];
+                        if (playerCommand == "pause"){
+                            axWindowsMediaPlayer1.Ctlcontrols.pause();
+                        }
+                        if (playerCommand == "play"){
+                            axWindowsMediaPlayer1.Ctlcontrols.play();
+                        }
+                        
+                    }
+                }   
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message.ToString());
                 }
+
+
+
+
+
+                /*  "chat:hello"
+                  "pause"
+                  "play" */
+
             }
         }
 
@@ -107,12 +138,21 @@ namespace networkingPlayer
         {
             if(client.Connected)
             {
+                
                 STW.WriteLine (TextToSend);
-                this.ChatScreentextbox.Invoke(new MethodInvoker(delegate()
+                string[] words = TextToSend.Split('Û');
+                string checkString = words[0];
+
+                if(checkString == "chat")
                 {
-                    ChatScreentextbox.AppendText("Me:" + TextToSend + "\n");
-                }));
-            }
+                    this.ChatScreentextbox.Invoke(new MethodInvoker(delegate ()
+                    {
+                        ChatScreentextbox.AppendText("Me:" + words[1] + "\n");
+                    }));
+                }
+                
+               
+             }
             else
             {
                 MessageBox.Show("Sending failed");
@@ -120,7 +160,7 @@ namespace networkingPlayer
             backgroundWorker2.CancelAsync();
         }
 
-        private void backgroundWorker3_DoWork(object sender, DoWorkEventArgs e)
+       /* private void backgroundWorker3_DoWork(object sender, DoWorkEventArgs e)
         {
             while (client.Connected)
             {
@@ -134,21 +174,18 @@ namespace networkingPlayer
                     }));
                     receiveCommand = " ";
                 }
-                else
-                {
-                    MessageBox.Show("Sending failed");
-                }
+             
             }
             
             backgroundWorker3.CancelAsync();
-        }
+        }*/
 
 
         private void SendButton_Click(object sender, EventArgs e)
         {
             if(MessagetextBox.Text != "")
             {
-                TextToSend = MessagetextBox.Text;
+                TextToSend = "chatÛ" + MessagetextBox.Text;
                 backgroundWorker2.RunWorkerAsync();
             }
             MessagetextBox.Text = "";
@@ -179,14 +216,36 @@ namespace networkingPlayer
 
         private void pauseButton_Click(object sender, EventArgs e)
         {
-            axWindowsMediaPlayer1.Ctlcontrols.pause();
-            STW.WriteLine("pause");
-            backgroundWorker3.RunWorkerAsync();
-        }
+            //CODE FOR CLICKING PAUSE.
+            try
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.pause();
+                ChatScreentextbox.AppendText("Video paused." +"\n");
+                string commandText = "commandÛpause";
+                STW.WriteLine(commandText);
+            }
+            catch(Exception ex)
+            {
+                ChatScreentextbox.AppendText("No server-client connection.");
+            }
+            
+            
+            
+         }
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            axWindowsMediaPlayer1.Ctlcontrols.play();
+            try
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.play();
+                ChatScreentextbox.AppendText("Resuming video." + "\n");
+                string commandText = "commandÛplay";
+                STW.WriteLine(commandText);
+            }
+            catch (Exception ex)
+            {
+                ChatScreentextbox.AppendText("No server-client connection.");
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
