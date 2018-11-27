@@ -1,16 +1,16 @@
-# TCP Networking Player and Chat Server/Client
+# Project Title
 
-**** The below readme is a work in progress! ****
+This player is a networking project written in C# using windows forms to demonstrate the Socket class in C#. The purpose of the project is connecting two video player clients with chat functionality and watching the same file in sync with the other player client.
 
-One Paragraph of project description goes here
+Although the initial scope of the project is rather small, I believe there is ample opportunity for it to grow.
 
 ## Getting Started
 
-To use the networking player simply download the project file. Currently the state of this repository is simply to display the code but stand alone usability of the application will be added shortly.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-Currently, visual studios is required and the project must be downloaded to run the application but the libraries will be packaged with the .exe so that it can be run standalone in the future.
+What things you need to install the software and how to install them
 
 ```
 Give examples
@@ -33,6 +33,18 @@ until finished
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+### Break down into end to end tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
 
 ### And coding style tests
 
@@ -72,6 +84,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Big shoutout to PurpleBooth for the readme template!
+* Hat tip to anyone whose code was used
 * Inspiration
 * etc

@@ -21,7 +21,6 @@ C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\bin\Debu
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\bin\Debug\SimpleTCP.dll
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\bin\Debug\Interop.WMPLib.dll
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\bin\Debug\AxInterop.WMPLib.dll
-C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\networkingPlayer.csprojAssemblyReference.cache
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\Interop.WMPLib.dll
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\AxInterop.WMPLib.dll
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\networkingPlayer.csproj.ResolveComReference.cache
@@ -32,6 +31,7 @@ C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debu
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\networkingPlayer.csproj.CopyComplete
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\networkingPlayer.exe
 C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\networkingPlayer.pdb
+C:\Users\jam20976\source\repos\networkingPlayer - Copy\networkingPlayer\obj\Debug\networkingPlayer.csprojAssemblyReference.cache
 C:\Users\jam20976\source\repos\networkingPlayer-Copy\networkingPlayer\bin\Debug\networkingPlayer.exe.config
 C:\Users\jam20976\source\repos\networkingPlayer-Copy\networkingPlayer\bin\Debug\networkingPlayer.exe
 C:\Users\jam20976\source\repos\networkingPlayer-Copy\networkingPlayer\bin\Debug\networkingPlayer.pdb
