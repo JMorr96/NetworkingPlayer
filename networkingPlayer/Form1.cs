@@ -110,7 +110,10 @@ namespace networkingPlayer
                     {
                         string playerCommand = words[1];
                         if (playerCommand == "pause"){
+                            
+                            axWindowsMediaPlayer1.Ctlcontrols.currentPosition = Convert.ToDouble(words[2]);
                             axWindowsMediaPlayer1.Ctlcontrols.pause();
+                            
                         }
                         if (playerCommand == "play"){
                             axWindowsMediaPlayer1.Ctlcontrols.play();
@@ -220,8 +223,9 @@ namespace networkingPlayer
             try
             {
                 axWindowsMediaPlayer1.Ctlcontrols.pause();
-                ChatScreentextbox.AppendText("Video paused." +"\n");
-                string commandText = "commandÛpause";
+                double videoPosition = axWindowsMediaPlayer1.Ctlcontrols.currentPosition; //Gets current position of file.
+                string position = videoPosition.ToString(); //Converts the double to a string for sending.
+                string commandText = "commandÛpauseÛ" + position; //Appends position to command string so that it can be parsed.
                 STW.WriteLine(commandText);
             }
             catch(Exception ex)
