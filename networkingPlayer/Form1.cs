@@ -126,10 +126,6 @@ namespace networkingPlayer
                     MessageBox.Show(ex.Message.ToString());
                 }
 
-
-
-
-
                 /*  "chat:hello"
                   "pause"
                   "play" */
@@ -242,6 +238,7 @@ namespace networkingPlayer
             try
             {
                 axWindowsMediaPlayer1.Ctlcontrols.play();
+                
                 ChatScreentextbox.AppendText("Resuming video." + "\n");
                 string commandText = "commandÛplay";
                 STW.WriteLine(commandText);
@@ -256,11 +253,5 @@ namespace networkingPlayer
         {
 
         }
-
-       
-
-
-
-       
     }
 }
