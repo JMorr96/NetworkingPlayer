@@ -55,7 +55,7 @@ namespace networkingPlayer
             client = listener.AcceptTcpClient();
             STR = new StreamReader(client.GetStream());
             STW = new StreamWriter(client.GetStream());
-            STW.AutoFlush = true; //Ask prof about this one.
+            STW.AutoFlush = true;
             backgroundWorker1.RunWorkerAsync();
             backgroundWorker2.WorkerSupportsCancellation = true;
 
@@ -159,27 +159,6 @@ namespace networkingPlayer
             backgroundWorker2.CancelAsync();
         }
 
-       /* private void backgroundWorker3_DoWork(object sender, DoWorkEventArgs e)
-        {
-            while (client.Connected)
-            {
-                
-                if (STR.ReadLine() == "pause")
-                {
-
-                    this.axWindowsMediaPlayer1.Invoke(new MethodInvoker(delegate ()
-                    {
-                        axWindowsMediaPlayer1.Ctlcontrols.pause();
-                    }));
-                    receiveCommand = " ";
-                }
-             
-            }
-            
-            backgroundWorker3.CancelAsync();
-        }*/
-
-
         private void SendButton_Click(object sender, EventArgs e)
         {
             if(MessagetextBox.Text != "")
@@ -215,7 +194,7 @@ namespace networkingPlayer
 
         private void pauseButton_Click(object sender, EventArgs e)
         {
-            //CODE FOR CLICKING PAUSE.
+            //CLICKING PAUSE.
             try
             {
                 axWindowsMediaPlayer1.Ctlcontrols.pause();
